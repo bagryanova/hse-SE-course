@@ -96,3 +96,9 @@ def test_get_user_by_name():
     user = utils.get_user_by_name(db=TestingSessionLocal(), name="first")
     assert user.id == 1
     assert user.name == "first"
+    
+
+def test_get_user_by_id():
+    user = utils.get_user(db=TestingSessionLocal(), user_id=1)
+    assert user.id == 1
+    assert user.name == "first"
