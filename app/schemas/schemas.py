@@ -14,3 +14,10 @@ class Internship(Base):
     updated_at = Column(DateTime(timezone=True), default=now())
     application_num = Column(Integer, default=0)
     is_open = Column(Boolean, default=True)
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)

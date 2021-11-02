@@ -30,6 +30,8 @@ def override_get_db():
 def clean_db():
     data_base = TestingSessionLocal()
     try:
+        data_base.query(schemas.User).delete()
+        data_base.commit()
         data_base.query(schemas.Internship).delete()
         data_base.commit()
     finally:
@@ -83,6 +85,7 @@ def test_get_internship_by_id():
 
 
 def test_create_user_db():
+    clean_db()
     user = models.User(name="first")
     res_user = utils.create_user(db=TestingSessionLocal(), user=user)
     assert res_user.id == 1

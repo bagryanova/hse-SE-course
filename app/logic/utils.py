@@ -20,3 +20,11 @@ def get_internship_by_name(db: Session, name: str):
 
 def get_internship(db: Session, internship_id: int):
     return db.query(schemas.Internship).filter(schemas.Internship.id == internship_id).first()
+
+
+def create_user(db: Session, user: models.User):
+    db_user = schemas.User(name=user.name)
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
