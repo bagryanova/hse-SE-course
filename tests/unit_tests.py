@@ -102,3 +102,22 @@ def test_get_user_by_id():
     user = utils.get_user(db=TestingSessionLocal(), user_id=1)
     assert user.id == 1
     assert user.name == "first"
+
+
+def test_get_internship_by_open():
+    internship = utils.get_internship_by_availability(db=TestingSessionLocal(), internship_open=True)
+    assert internship.id == 1
+    assert internship.name == "first"
+    assert internship.description == "test 1"
+    assert internship.application_num == 0
+    assert internship.is_open
+
+
+def test_get_internship_by_close():
+    internship = utils.get_internship_by_availability(db=TestingSessionLocal(), internship_open=False)
+    assert internship.id == 1
+    assert internship.name == "first"
+    assert internship.description == "test 1"
+    assert internship.application_num == 0
+    assert not internship.is_open
+    
