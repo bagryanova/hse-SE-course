@@ -153,6 +153,27 @@ def test_get_user_by_sex_not_stated():
     user = models.User(name="first", sex="not stated")
     utils.create_user(db=TestingSessionLocal(), user=user)
     user = utils.get_users_by_sex(db=TestingSessionLocal(), user_sex="not stated")[0]
+
+
+def test_get_user_by_status_active():
+    clean_db()
+    user = models.User(name="first", sex="female", status="active")
+    utils.create_user(db=TestingSessionLocal(), user=user)
+    user = utils.get_users_by_status(db=TestingSessionLocal(), user_status="active")[0]
+    assert user.id == 1
+    assert user.name == "first"
+    assert user.sex == "female"
+
+
+def test_get_user_by_status_not_active():
+    clean_db()
+    user = models.User(name="first", sex="female", status="active")
+    utils.create_user(db=TestingSessionLocal(), user=user)
+    user = utils.get_users_by_status(db=TestingSessionLocal(), user_status="not active")[0]
+    assert user.id == 1
+    assert user.name == "first"
+    assert user.sex == "female"
+    
     assert user.id == 1
     assert user.name == "first"
     assert user.sex == "not stated"
