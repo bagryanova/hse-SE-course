@@ -16,7 +16,9 @@ jobs:
           python-version: '3.8'
 
       - name: Setup
-        run: python3 -m pip install -r requirements.txt
+        run: |
+          python3 -m pip install fastapi[all]
+          python3 -m pip install -r requirements.txt
 
       - name: PyLint
         if: always()
