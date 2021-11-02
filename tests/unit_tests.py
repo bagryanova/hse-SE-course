@@ -80,3 +80,10 @@ def test_get_internship_by_id():
     assert internship.description == "test 1"
     assert internship.application_num == 0
     assert internship.is_open
+
+
+def test_create_user_db():
+    user = models.User(name="first")
+    res_user = utils.create_user(db=TestingSessionLocal(), user=user)
+    assert res_user.id == 1
+    assert res_user.name == "first"
