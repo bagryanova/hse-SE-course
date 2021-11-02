@@ -12,3 +12,8 @@ def create_internship(db: Session, internship: models.Internship):
     db.commit()
     db.refresh(db_internship)
     return db_internship
+
+
+def get_internship_by_name(db: Session, name: str):
+    return db.query(schemas.Internship).filter(schemas.Internship.name == name).first()
+
