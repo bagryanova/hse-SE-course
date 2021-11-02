@@ -71,3 +71,13 @@ def test_get_internship_by_name():
     assert internship.description == "test 1"
     assert internship.application_num == 0
     assert internship.is_open
+    
+    
+def test_get_internship_by_id():
+    internship = utils.get_internship(db=TestingSessionLocal(), internship_id=1)
+    assert internship.id == 1
+    assert internship.name == "first"
+    assert internship.description == "test 1"
+    assert internship.application_num == 0
+    assert internship.is_open
+
