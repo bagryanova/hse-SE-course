@@ -11,3 +11,6 @@ class Internship(BaseModel):
     application_num: Optional[int] = None
     is_open: bool
 
+
+class User(BaseModel):
+    name: str
