@@ -17,3 +17,6 @@ def create_internship(db: Session, internship: models.Internship):
 def get_internship_by_name(db: Session, name: str):
     return db.query(schemas.Internship).filter(schemas.Internship.name == name).first()
 
+
+def get_internship(db: Session, internship_id: int):
+    return db.query(schemas.Internship).filter(schemas.Internship.id == internship_id).first()
