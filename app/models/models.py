@@ -14,3 +14,4 @@ class Internship(BaseModel):
 
 class User(BaseModel):
     name: str
+    sex: str

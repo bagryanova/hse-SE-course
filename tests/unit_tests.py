@@ -51,7 +51,7 @@ def test_create_internship():
 
 
 def test_create_user():
-    user = models.User(name="first")
+    user = models.User(name="first", sex='male')
     assert user.name == "first"
 
 
@@ -86,7 +86,7 @@ def test_get_internship_by_id():
 
 def test_create_user_db():
     clean_db()
-    user = models.User(name="first")
+    user = models.User(name="first", sex='male')
     res_user = utils.create_user(db=TestingSessionLocal(), user=user)
     assert res_user.id == 1
     assert res_user.name == "first"
@@ -132,7 +132,7 @@ def test_get_user_by_sex_male():
     clean_db()
     user = models.User(name="first", sex="male")
     utils.create_user(db=TestingSessionLocal(), user=user)
-    user = utils.get_user_by_sex(db=TestingSessionLocal(), user_sex="male")
+    user = utils.get_users_by_sex(db=TestingSessionLocal(), user_sex="male")[0]
     assert user.id == 1
     assert user.name == "first"
     assert user.sex == "male"
@@ -142,7 +142,7 @@ def test_get_user_by_sex_female():
     clean_db()
     user = models.User(name="first", sex="female")
     utils.create_user(db=TestingSessionLocal(), user=user)
-    user = utils.get_user_by_sex(db=TestingSessionLocal(), user_sex="female")
+    user = utils.get_users_by_sex(db=TestingSessionLocal(), user_sex="female")[0]
     assert user.id == 1
     assert user.name == "first"
     assert user.sex == "female"
@@ -152,7 +152,7 @@ def test_get_user_by_sex_not_stated():
     clean_db()
     user = models.User(name="first", sex="not stated")
     utils.create_user(db=TestingSessionLocal(), user=user)
-    user = utils.get_user_by_sex(db=TestingSessionLocal(), user_sex="not stated")
+    user = utils.get_users_by_sex(db=TestingSessionLocal(), user_sex="not stated")[0]
     assert user.id == 1
     assert user.name == "first"
     assert user.sex == "not stated"
