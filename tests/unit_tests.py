@@ -9,3 +9,9 @@ def test_create_internship():
     assert internship.description == "test 1"
     assert internship.application_num == 0
     assert internship.is_open
+
+
+def test_create_user():
+    user = models.User(name="first")
+    assert user.name == "first"
+
