@@ -90,3 +90,9 @@ def test_create_user_db():
     res_user = utils.create_user(db=TestingSessionLocal(), user=user)
     assert res_user.id == 1
     assert res_user.name == "first"
+
+
+def test_get_user_by_name():
+    user = utils.get_user_by_name(db=TestingSessionLocal(), name="first")
+    assert user.id == 1
+    assert user.name == "first"
