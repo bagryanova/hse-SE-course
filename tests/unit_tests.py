@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from starlette.testclient import TestClient
+from fastapi.testclient import TestClient
 
 from app.schemas import schemas
 from app.controllers.routers import get_db
@@ -20,20 +20,20 @@ Base.metadata.create_all(bind=engine)
 
 
 def override_get_db():
-    db = TestingSessionLocal()
+    data_base = TestingSessionLocal()
     try:
-        yield db
+        yield data_base
     finally:
-        db.close()
+        data_base.close()
 
 
 def clean_db():
-    db = TestingSessionLocal()
+    data_base = TestingSessionLocal()
     try:
-        db.query(schemas.Internship).delete()
-        db.commit()
+        data_base.query(schemas.Internship).delete()
+        data_base.commit()
     finally:
-        db.close()
+        data_base.close()
 
 
 app.dependency_overrides[get_db] = override_get_db
