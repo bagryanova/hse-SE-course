@@ -126,4 +126,33 @@ def test_get_internship_by_close():
     assert internship.description == "test 1"
     assert internship.application_num == 0
     assert not internship.is_open
-    
+
+
+def test_get_user_by_sex_male():
+    clean_db()
+    user = models.User(name="first", sex="male")
+    utils.create_user(db=TestingSessionLocal(), user=user)
+    user = utils.get_user_by_sex(db=TestingSessionLocal(), user_sex="male")
+    assert user.id == 1
+    assert user.name == "first"
+    assert user.sex == "male"
+
+
+def test_get_user_by_sex_female():
+    clean_db()
+    user = models.User(name="first", sex="female")
+    utils.create_user(db=TestingSessionLocal(), user=user)
+    user = utils.get_user_by_sex(db=TestingSessionLocal(), user_sex="female")
+    assert user.id == 1
+    assert user.name == "first"
+    assert user.sex == "female"
+
+
+def test_get_user_by_sex_not_stated():
+    clean_db()
+    user = models.User(name="first", sex="not stated")
+    utils.create_user(db=TestingSessionLocal(), user=user)
+    user = utils.get_user_by_sex(db=TestingSessionLocal(), user_sex="not stated")
+    assert user.id == 1
+    assert user.name == "first"
+    assert user.sex == "not stated"
