@@ -36,3 +36,7 @@ def get_user_by_name(db: Session, name: str):
 
 def get_user(db: Session, user_id: int):
     return db.query(schemas.User).filter(schemas.User.id == user_id).first()
+
+
+def get_internship_by_availability(db: Session, internship_open: bool):
+    return db.query(schemas.Internship).filter(schemas.Internship.is_open == internship_open).first()

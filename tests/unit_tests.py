@@ -105,6 +105,9 @@ def test_get_user_by_id():
 
 
 def test_get_internship_by_open():
+    clean_db()
+    internship = models.Internship(name="first", description="test 1", updated_at=NOW, application_num=0, is_open=True)
+    utils.create_internship(db=TestingSessionLocal(), internship=internship)
     internship = utils.get_internship_by_availability(db=TestingSessionLocal(), internship_open=True)
     assert internship.id == 1
     assert internship.name == "first"
@@ -114,6 +117,9 @@ def test_get_internship_by_open():
 
 
 def test_get_internship_by_close():
+    clean_db()
+    internship = models.Internship(name="first", description="test 1", updated_at=NOW, application_num=0, is_open=False)
+    utils.create_internship(db=TestingSessionLocal(), internship=internship)
     internship = utils.get_internship_by_availability(db=TestingSessionLocal(), internship_open=False)
     assert internship.id == 1
     assert internship.name == "first"
