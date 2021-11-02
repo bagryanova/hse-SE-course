@@ -1,6 +1,43 @@
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from starlette.testclient import TestClient
+
+from app.schemas import schemas
+from app.controllers.routers import get_db
+from app.logic.database import Base
+from app.main import app
 from app.models import models
+from app.logic import utils
 
 NOW = '2021-09-26T16:29:06.811823'
+
+SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+)
+TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base.metadata.create_all(bind=engine)
+
+
+def override_get_db():
+    db = TestingSessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+def clean_db():
+    db = TestingSessionLocal()
+    try:
+        db.query(schemas.Internship).delete()
+        db.commit()
+    finally:
+        db.close()
+
+
+app.dependency_overrides[get_db] = override_get_db
+client = TestClient(app)
 
 
 def test_create_internship():
@@ -17,6 +54,7 @@ def test_create_user():
 
 
 def test_create_internship_db():
+    clean_db()
     internship = models.Internship(name="first", description="test 1", updated_at=NOW, application_num=0, is_open=True)
     res_internship = utils.create_internship(db=TestingSessionLocal(), internship=internship)
     assert res_internship.id == 1
