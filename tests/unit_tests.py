@@ -173,7 +173,6 @@ def test_get_user_by_status_not_active():
     assert user.id == 1
     assert user.name == "first"
     assert user.sex == "female"
-    
     assert user.id == 1
     assert user.name == "first"
     assert user.sex == "not stated"
