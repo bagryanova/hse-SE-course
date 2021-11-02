@@ -1,6 +1,6 @@
 from app.models import models
 
-now = '2021-09-26T16:29:06.811823'
+NOW = '2021-09-26T16:29:06.811823'
 
 
 def test_create_internship():
@@ -14,4 +14,3 @@ def test_create_internship():
 def test_create_user():
     user = models.User(name="first")
     assert user.name == "first"
-
