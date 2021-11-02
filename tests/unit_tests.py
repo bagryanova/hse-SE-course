@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from fastapi.testclient import TestClient
+from starlette.testclient import TestClient
 
 from app.schemas import schemas
 from app.controllers.routers import get_db
