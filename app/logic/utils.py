@@ -32,3 +32,7 @@ def create_user(db: Session, user: models.User):
 
 def get_user_by_name(db: Session, name: str):
     return db.query(schemas.User).filter(schemas.User.name == name).first()
+
+
+def get_user(db: Session, user_id: int):
+    return db.query(schemas.User).filter(schemas.User.id == user_id).first()
