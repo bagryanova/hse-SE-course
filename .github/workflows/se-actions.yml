@@ -32,8 +32,8 @@ jobs:
         if: always()
         run: python3 -m flake8 --max-line-length=120 tests
 
-      - name: Coverage 90%
+      - name: Coverage 80%
         if: always()
         run: |
           coverage run -m pytest tests/unit_tests.py
-          coverage report --fail-under 90
+          coverage report --fail-under 80
