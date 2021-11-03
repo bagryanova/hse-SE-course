@@ -51,7 +51,7 @@ def test_create_internship():
 
 
 def test_create_user():
-    user = models.User(name="first", sex='male')
+    user = models.User(name="first", sex="male", status="active")
     assert user.name == "first"
 
 
@@ -86,7 +86,7 @@ def test_get_internship_by_id():
 
 def test_create_user_db():
     clean_db()
-    user = models.User(name="first", sex='male')
+    user = models.User(name="first", sex="male", status="active")
     res_user = utils.create_user(db=TestingSessionLocal(), user=user)
     assert res_user.id == 1
     assert res_user.name == "first"
@@ -130,7 +130,7 @@ def test_get_internship_by_close():
 
 def test_get_user_by_sex_male():
     clean_db()
-    user = models.User(name="first", sex="male")
+    user = models.User(name="first", sex="male", status="active")
     utils.create_user(db=TestingSessionLocal(), user=user)
     user = utils.get_users_by_sex(db=TestingSessionLocal(), user_sex="male")[0]
     assert user.id == 1
@@ -140,7 +140,7 @@ def test_get_user_by_sex_male():
 
 def test_get_user_by_sex_female():
     clean_db()
-    user = models.User(name="first", sex="female")
+    user = models.User(name="first", sex="female", status="active")
     utils.create_user(db=TestingSessionLocal(), user=user)
     user = utils.get_users_by_sex(db=TestingSessionLocal(), user_sex="female")[0]
     assert user.id == 1
@@ -150,9 +150,12 @@ def test_get_user_by_sex_female():
 
 def test_get_user_by_sex_not_stated():
     clean_db()
-    user = models.User(name="first", sex="not stated")
+    user = models.User(name="first", sex="not stated", status="active")
     utils.create_user(db=TestingSessionLocal(), user=user)
     user = utils.get_users_by_sex(db=TestingSessionLocal(), user_sex="not stated")[0]
+    assert user.id == 1
+    assert user.name == "first"
+    assert user.sex == "not stated"
 
 
 def test_get_user_by_status_active():
@@ -163,16 +166,15 @@ def test_get_user_by_status_active():
     assert user.id == 1
     assert user.name == "first"
     assert user.sex == "female"
+    assert user.status == "active"
 
 
 def test_get_user_by_status_not_active():
     clean_db()
-    user = models.User(name="first", sex="female", status="active")
+    user = models.User(name="first", sex="female", status="not active")
     utils.create_user(db=TestingSessionLocal(), user=user)
     user = utils.get_users_by_status(db=TestingSessionLocal(), user_status="not active")[0]
     assert user.id == 1
     assert user.name == "first"
     assert user.sex == "female"
-    assert user.id == 1
-    assert user.name == "first"
-    assert user.sex == "not stated"
+    assert user.status == "not active"

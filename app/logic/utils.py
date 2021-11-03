@@ -23,7 +23,7 @@ def get_internship(db: Session, internship_id: int):
 
 
 def create_user(db: Session, user: models.User):
-    db_user = schemas.User(name=user.name, sex=user.sex)
+    db_user = schemas.User(name=user.name, sex=user.sex, status=user.status)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
@@ -36,6 +36,10 @@ def get_user_by_name(db: Session, name: str):
 
 def get_users_by_sex(db: Session, user_sex: str):
     return db.query(schemas.User).filter(schemas.User.sex == user_sex)
+
+
+def get_users_by_status(db: Session, user_status: str):
+    return db.query(schemas.User).filter(schemas.User.status == user_status)
 
 
 def get_user(db: Session, user_id: int):
