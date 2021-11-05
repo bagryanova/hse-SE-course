@@ -26,11 +26,11 @@ jobs:
 
       - name: Mypy
         if: always()
-        run: python3 -m mypy tests
+        run: python3 -m mypy --ignore-missing-imports tests
 
       - name: Flake8
         if: always()
-        run: python3 -m flake8 tests
+        run: python3 -m flake8 --max-line-length=120 tests
 
       - name: Coverage 85%
         if: always()
