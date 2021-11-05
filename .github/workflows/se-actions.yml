@@ -23,7 +23,7 @@ jobs:
 
       - name: PyLint
         if: always()
-        run: ./actions.sh pylint
+        run: /bin/bash actions.sh pylint
 
       - name: Mypy
         if: always()
