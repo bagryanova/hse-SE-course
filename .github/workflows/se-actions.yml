@@ -16,13 +16,14 @@ jobs:
           python-version: '3.8'
 
       - name: Setup
-        run: |
-          python3 -m pip install fastapi[all]
-          python3 -m pip install -r requirements.txt
+        run: ./setup.sh
+#        run: |
+#          python3 -m pip install fastapi[all]
+#          python3 -m pip install -r requirements.txt
 
       - name: PyLint
         if: always()
-        run: python3 -m pylint hse-SE-course tests
+        run: ./actions.sh pylint
 
       - name: Mypy
         if: always()
