@@ -17,22 +17,15 @@ jobs:
 
       - name: Setup
         run: /bin/bash setup.sh python3
-#        run: |
-#          python3 -m pip install fastapi[all]
-#          python3 -m pip install -r requirements.txt
 
       - name: PyLint
-        if: always()
         run: /bin/bash actions.sh pylint
 
       - name: Mypy
-        if: always()
         run: /bin/bash actions.sh mypy
 
       - name: Flake8
-        if: always()
         run: /bin/bash actions.sh flake8
 
-      - name: Coverage 85%
-        if: always()
+      - name: Coverage 90%
         run: /bin/bash actions.sh coverage
