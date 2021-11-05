@@ -49,5 +49,5 @@ fi
 
 if [[ $coverage_flag == true ]]; then
     coverage run -m pytest tests/unit_tests.py
-    coverage report --fail-under 85
+    coverage report --fail-under 90
 fi
