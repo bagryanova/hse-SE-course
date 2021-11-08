@@ -14,3 +14,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Supported user creation
 - Saved information about the users in the database
 - Information about users can be obtained by id, name or gender
+
+
+## [Version 1.1]
+
+### Added
+
+- Fields validation
