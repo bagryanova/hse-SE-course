@@ -48,3 +48,10 @@ def get_user(db: Session, user_id: int):
 
 def get_internship_by_availability(db: Session, internship_open: bool):
     return db.query(schemas.Internship).filter(schemas.Internship.is_open == internship_open).first()
+
+
+def validate_user_gender(user: models.User):
+    sex_table = ["female", "male", "no stated"]
+    if user.sex not in sex_table:
+        raise ValueError("Incorrect user sex was provided")
+    return user.sex in sex_table
