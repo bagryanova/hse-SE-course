@@ -1,6 +1,5 @@
 # Internship search assistant
 
-![GitHub branch checks state](https://img.shields.io/github/checks-status/bagryanova/hse-SE-course/master)
 ![GitHub](https://img.shields.io/github/license/bagryanova/hse-SE-course)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/bagryanova/hse-SE-course)
 
