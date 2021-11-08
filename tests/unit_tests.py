@@ -9,6 +9,8 @@ from app.main import app
 from app.models import models
 from app.logic import utils
 
+import pytest
+
 NOW = '2021-09-26T16:29:06.811823'
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
@@ -178,3 +180,14 @@ def test_get_user_by_status_not_active():
     assert user.name == "first"
     assert user.sex == "female"
     assert user.status == "not active"
+
+
+def test_user_sex_validation():
+    user = models.User(name="first", sex="female", status="not active")
+    assert utils.validate_user_gender(user)
+
+
+def test_user_incorrect_sex_validation():
+    user = models.User(name="first", sex="dog", status="not active")
+    with pytest.raises(ValueError):
+        utils.validate_user_gender(user)
