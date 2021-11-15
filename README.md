@@ -13,11 +13,13 @@ Project presentation is available [here](https://docs.google.com/presentation/d/
 
 ## Installation
 You can clone this repository using the following command:
-bash
+```bash
 git clone https://github.com/bagryanova/hse-SE-course
+```
 You can launch the application directly from the command line using the following command:
-bash
+```bash
 uvicorn app.main:app --reload
+```
 
 ## Usage
 
