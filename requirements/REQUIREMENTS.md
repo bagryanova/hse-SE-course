@@ -18,7 +18,9 @@ Moderator can view, edit and delete internship announcements.
 
 ## User Case Diagram
 
-todo
+<p align="center">
+  <img src="/images/use_case.png" title="Use Case" alt="Use Case">
+</p>
 
 ## User Story
 
